@@ -43,8 +43,6 @@ public class ProductElasticService {
 
     public Product createProduct(Product product) throws Exception {
 
-//        UUID uuid = UUID.randomUUID();
-//        product.setPid(Integer.valueOf(uuid.toString()));
 
         Map<String, Object> documentMapper = objectMapper.convertValue(product, Map.class);
                 documentMapper.putAll(objectMapper.convertValue(product.getCategory_(), Map.class));
