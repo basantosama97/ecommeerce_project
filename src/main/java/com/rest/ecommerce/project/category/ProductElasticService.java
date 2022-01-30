@@ -43,7 +43,6 @@ public class ProductElasticService {
 
     public Product createProduct(Product product) throws Exception {
 
-
         Map<String, Object> documentMapper = objectMapper.convertValue(product, Map.class);
                 documentMapper.putAll(objectMapper.convertValue(product.getCategory_(), Map.class));
         IndexRequest indexRequest = new IndexRequest("productindex","_doc", product.getPid().toString()).source(documentMapper);
