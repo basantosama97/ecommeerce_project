@@ -33,17 +33,17 @@ public class Product {
         this.productVariants = productVariants;
     }
 //@Field(type = FieldType.Keyword)
-    @JoinColumn(name = "category_")
+    @JoinColumn(name = "category")
     @ManyToOne(fetch = FetchType.EAGER)
 //    @JsonIgnore
-    private Category category_;
+    private Category category;
 
-    public Category getCategory_() {
-        return category_;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_(Category category_) {
-        this.category_ = category_;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public Product() {

@@ -43,8 +43,11 @@ public class ProductElasticService {
 
     public Product createProduct(Product product) throws Exception {
 
+//        UUID uuid = UUID.randomUUID();
+//        product.setPid(Integer.valueOf(uuid.toString()));
+
         Map<String, Object> documentMapper = objectMapper.convertValue(product, Map.class);
-                documentMapper.putAll(objectMapper.convertValue(product.getCategory_(), Map.class));
+                documentMapper.putAll(objectMapper.convertValue(product.getCategory(), Map.class));
         IndexRequest indexRequest = new IndexRequest("productindex","_doc", product.getPid().toString()).source(documentMapper);
         IndexResponse indexResponse = client.index(indexRequest, RequestOptions.DEFAULT);
 
@@ -82,7 +85,7 @@ public class ProductElasticService {
     public List<Product> searchByProductNameAndDescription(String match) throws Exception {
 
         SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
-        searchSourceBuilder.query(multiMatchQuery(match,"productName","product_description", "category_.title", "category_.description").fuzziness(Fuzziness.ONE));
+        searchSourceBuilder.query(multiMatchQuery(match,"productName","product_description", "category.title", "category.description").fuzziness(Fuzziness.ONE));
         SearchRequest searchRequest = new SearchRequest("productindex");
         searchRequest.source(searchSourceBuilder);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
@@ -102,10 +105,10 @@ public class ProductElasticService {
             SearchRequest searchRequest = new SearchRequest();
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
             QueryBuilder queryBuilder = QueryBuilders
-                    .multiMatchQuery(category, "category_.title", "category_.description")
+                    .multiMatchQuery(category, "category.title", "category.description")
                     .fuzziness(Fuzziness.ONE);
             searchSourceBuilder.query(QueryBuilders
-                    .nestedQuery("category_",
+                    .nestedQuery("category",
                             queryBuilder,
                             ScoreMode.Avg));
 

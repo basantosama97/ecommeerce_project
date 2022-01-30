@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product,Integer> {
 
@@ -15,6 +17,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product,In
     Page<Product> findAll(Pageable pageable);
     Page<Product> findByPid(Integer pid, Pageable pageable);
 
+    List<Product> findByCategory_Id(Integer id);
     Product findByPid(Integer pid);
 //    Page<Product> findByOrderByPriceDesc(Pageable pageable);
 

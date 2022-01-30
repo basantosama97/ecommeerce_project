@@ -19,7 +19,7 @@ public class Category {
 
     @JsonIgnore
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@OneToMany(mappedBy = "category_", fetch = FetchType.LAZY)
+@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> product;
 
     public List<Product> getProduct() {

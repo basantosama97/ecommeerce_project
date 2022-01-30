@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ProductJpaResource {
 
@@ -33,6 +35,10 @@ public class ProductJpaResource {
         Page<Product> pageing = productRepository.findAll(pageable);
         return pageing;
 
+    }
+    @GetMapping("/categoryproducts/{id}")
+    public List<Product> ProductsPerCategory(@PathVariable Integer id){
+        return productRepository.findByCategory_Id(id);
     }
 
 

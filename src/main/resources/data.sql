@@ -6,27 +6,27 @@ Insert into Category(id,title,description,image)
 values(3, 'H', 'High neck T-shirts', 'image');
 
 Insert into Product(pid,product_name,product_description,product_slug,product_image
-,new_product,featured,active,price,category_)
+,new_product,featured,active,price,category)
 values(111,'product one', 'lol', 'product 1 slug', 'product 1 image', true, true, false, 11.900, 1);
-Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 values(1111,'product 1111', 'product 1 Description', 'product 1 slug', 'product 1 image', false, true, true, 11.00, 1);
 
-Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 values(222,'product two', 'twoLols', 'product 1 slug', 'product 1 image', true, false, false, 12.900, 2);
-Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 values(2222,'product 2222', 'product 1 Description', 'product 1 slug', 'product 1 image', false, false, true, 13.900, 2);
 
 
-Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 values(333,'product 333', 'product 1 Description', 'product 1 slug', 'product 1 image', true, true, false, 14.900, 3);
-Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+Insert into Product(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 values(3333,'product 3333', 'product 1 Description', 'product 1 slug', 'product 1 image', false, true, true, 15.900, 3);
 
 
 
---Insert into NewProduct(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+--Insert into NewProduct(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 --values(857,'product 1', 'product 1 Description', 'product 1 slug', 'product 1 image', true, true, false, 14.900, 3);
---Insert into NewProduct(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category_)
+--Insert into NewProduct(pid,product_name,product_description,product_slug,product_image,new_product,featured,active,price,category)
 --values(168,'product 1', 'product 1 Description', 'product 1 slug', 'product 1 image', false, true, true, 15.900, 3);
 
 
