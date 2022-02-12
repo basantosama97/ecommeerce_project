@@ -101,6 +101,7 @@ public class ProductElasticService {
 
 
         public List<Product> searchByCategory(String category) throws Exception {
+            System.out.println("d");
 
             SearchRequest searchRequest = new SearchRequest();
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();

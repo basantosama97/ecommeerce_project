@@ -5,7 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -95,12 +94,20 @@ public class ProductJpaResource {
     }
 
     @GetMapping("/products/desc")
-    public Page<Product> retrieveAllProductsDesc(@PageableDefault Pageable pageable){
+    public Page<Product> retrieveAllProductsDesc(@RequestParam Integer page, @RequestParam Integer size){
 
-        //Pageable pageable = PageRequest.of(page, size, Sort.by("price").descending());
+        Pageable pageable = PageRequest.of(page, size, Sort.by("price").descending());
         Page<Product> paging = productRepository.findAll(pageable);
         return paging;
     }
+
+
+//    @GetMapping("/products/desc")
+//    public Page<Product> retrieveAllProductsDesc(@PageableDefault Pageable pageable){
+//
+//        Page<Product> paging = productRepository.findAll(pageable);
+//        return paging;
+//    }
 
 
 }
