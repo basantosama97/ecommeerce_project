@@ -1,4 +1,4 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import javax.validation.constraints.NotBlank;
 

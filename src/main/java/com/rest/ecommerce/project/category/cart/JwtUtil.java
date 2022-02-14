@@ -1,4 +1,4 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -17,11 +17,11 @@ public class MyUserDetailsService implements UserDetailsService {
 //    }
 
     @Autowired
-    UserRepository jwtUserRepository;
+    UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        JwtUser jwtUser = jwtUserRepository.findUserByEmail(email);
+        JwtUser jwtUser = userRepository.findUserByEmail(email);
         if (jwtUser == null) {
             throw new UsernameNotFoundException("email Not found" + email);
         }

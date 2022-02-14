@@ -1,4 +1,4 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +30,9 @@ public class AuthController {
     UserRepository userRepository;
 
     @Autowired
+    AddressRepository addressRepository;
+
+    @Autowired
     JwtUtil jwtUtil;
 
     @Autowired
@@ -59,22 +62,61 @@ public class AuthController {
 
     }
 
-    @PostMapping("/signup")
+    @PostMapping("/user/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
 
 
         if(userRepository.findUserByEmail(signUpRequest.getEmail()) != null) {
-            return new ResponseEntity(new ApiResponse(false, "Email Address already in use!"),
+            return new ResponseEntity(new NormalApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
 
+
         // Creating user's account
         JwtUser jwtUser = new JwtUser();
+        jwtUser.setUsername(signUpRequest.getName());
+        jwtUser.setPhoneNumber(signUpRequest.getPhoneNumber());
         jwtUser.setEmail(signUpRequest.getEmail());
         jwtUser.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+        jwtUser.setLoggedIn(true);
+//        jwtUser.setAddress((List<address>) signUpRequest.getAddress());
         userRepository.save(jwtUser);
-        return ResponseEntity.ok(new ApiResponse(true, "User registered successfully"));
+
+        return ResponseEntity.ok(new ApiResponse(true, "User registered successfully", jwtUser));
+
     }
+
+    @PostMapping("/add/address")
+    public ResponseEntity<?> addAddress (@Valid @RequestBody AddressRequest addressRequest){
+
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Object currentPrincipalName = authentication.getDetails();
+
+        JwtUser user = userRepository.findByEmail(authentication.getName());
+
+        address address1 = new address();
+        address1.setBlock_(addressRequest.getBlock());
+        address1.setBuilding(addressRequest.getBuilding());
+        address1.setCity(addressRequest.getCity());
+        address1.setFloor(addressRequest.getFloor());
+        address1.setExtraInfo(addressRequest.getExtraInfo());
+        address1.setStreet(addressRequest.getStreet());
+        address1.setUser(user);
+        addressRepository.save(address1);
+        user.getAddress().add(address1);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new NormalApiResponse(true, "User registered successfully"));
+
+    }
+
+//    @RequestMapping(value = "/username", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Object currentUserName(Authentication authentication) {
+//        return authentication.getPrincipal();
+//    }
+
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

@@ -1,4 +1,4 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -24,17 +24,16 @@ public class SignUpRequest {
 
 //    @NotBlank
 //    @Size(min = 1, max = 11)
-//    private String address;
+//    private address address;
 
     public SignUpRequest() {
     }
 
-    public SignUpRequest(String name, String email, String password, String phoneNumber, String address) {
+    public SignUpRequest(String name, String email, String password, String phoneNumber) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
-//        this.address = address;
     }
 
     public String getPhoneNumber() {
@@ -45,13 +44,6 @@ public class SignUpRequest {
         this.phoneNumber = phoneNumber;
     }
 
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
 
     public String getName() {
         return name;

@@ -1,8 +1,7 @@
-package com.rest.ecommerce.project.cart;
+package com.rest.ecommerce.project.category.cart;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -13,29 +12,42 @@ import java.util.List;
 public class JwtUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     private long id;
     private @NotBlank String username;
+    @JsonIgnore
     private @NotBlank String email;
+    @JsonIgnore
     private @NotBlank String password;
+    @JsonIgnore
     private @NotBlank String phoneNumber;
+    @JsonIgnore
     private @NotBlank boolean loggedIn;
 
-    @JsonIgnore
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private List<Address> address;
 
-    public JwtUser() {
+//    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<address> address;
+
+    public List<address> getAddress() {
+        return address;
     }
 
-    public JwtUser(long id, String username, String email, String password, String phoneNumber, boolean loggedIn, List<Address> address) {
+    public void setAddress(List<address> address) {
+        this.address = address;
+    }
+
+    public JwtUser(long id, String username, String email, String password, String phoneNumber, boolean loggedIn) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.loggedIn = loggedIn;
-        this.address = address;
+    }
+
+    public JwtUser() {
     }
 
     public long getId() {
@@ -86,13 +98,6 @@ public class JwtUser {
         this.loggedIn = loggedIn;
     }
 
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    public void setAddress(List<Address> address) {
-        this.address = address;
-    }
 
     @Override
     public String toString() {

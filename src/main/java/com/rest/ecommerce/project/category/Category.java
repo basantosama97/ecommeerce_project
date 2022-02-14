@@ -18,8 +18,8 @@ public class Category {
     private String image;
 
     @JsonIgnore
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
     private List<Product> product;
 
     public List<Product> getProduct() {
